@@ -1,0 +1,9 @@
+/**
+ * @Description: 项目的css文件统一引入到该文件进行管理
+ * @author changliu35
+ * @date 2023/8/16
+*/
+
+@import './common/reset.scss';
+@import './common/base.scss';
+@import './common/resetElementPlus.scss';

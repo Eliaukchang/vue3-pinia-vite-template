@@ -1,10 +1,14 @@
 <template>
   <div class="home">
     <h1>Home页面</h1>
+    <hr>
     pinia的counter的值是：{{counter}}
     <br>
     <el-button type="primary" @click="showDialog">显示弹窗</el-button>
     <Dialog :title="dialogConfig.title" :visible="dialogConfig.visible" :customWidth="dialogConfig.customWidth" @cancel="handleCancel" @confirm="handleConfirm"></Dialog>
+    <hr>
+    <TestPopoverOptions></TestPopoverOptions>
+
   </div>
 </template>
 
@@ -13,18 +17,22 @@ import { reactive } from "vue";
 import {useCounterStore} from "@/stores/modules/counter.js";
 import { storeToRefs } from 'pinia'
 import Dialog from "@/components/Dialog/index.vue";
+import TestPopoverOptions from "@/views/Test/TestPopoverOptions.vue"
 
-
+/**
+ *  注释：测试Pinia
+ * */
 const counterStore = useCounterStore();
 let { counter } = storeToRefs(counterStore);  // storeToRefs让解构出来的值依然是响应式的
-console.log("pinia-counter:", counter)
 
+/**
+ *  注释：Dialog
+ * */
 const dialogConfig = reactive({
   title: '我是弹窗',
   customWidth: '600px',
   visible: false
 })
-
 const showDialog = () => {
   dialogConfig.visible = true;
 }
@@ -34,7 +42,6 @@ const handleCancel = () => {
 const handleConfirm = () => {
   dialogConfig.visible = false;
 }
-
 </script>
 
 

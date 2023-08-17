@@ -14,6 +14,11 @@ const routes = [
     path: "/:pathMatch(.*)",
     name: "NotFound",
     component: () => import("@/views/NotFound/index.vue"),
+  },
+  {
+    path: "/popoverOptions",
+    name: 'popoverOptions',
+    component: () => import("@/views/Test/TestPopoverOptions.vue"),
   }
 ]
 

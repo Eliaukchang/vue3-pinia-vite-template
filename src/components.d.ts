@@ -18,8 +18,6 @@ declare module 'vue' {
     ElLink: typeof import('element-plus/es')['ElLink']
     ElPopover: typeof import('element-plus/es')['ElPopover']
     IEpCheck: typeof import('~icons/ep/check')['default']
-    IEpClose: typeof import('~icons/ep/close')['default']
-    IEpPlus: typeof import('~icons/ep/plus')['default']
     PopoverOptions: typeof import('./components/PopoverOptions/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

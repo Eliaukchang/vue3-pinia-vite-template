@@ -28,8 +28,6 @@
 </template>
 
 <script setup>
-import {computed, reactive} from "vue";
-
 /**
  *  注释：props
  * */

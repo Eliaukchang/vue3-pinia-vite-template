@@ -15,6 +15,7 @@
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
     "@iconify-json/ep": "^1.1.12",
     "@vitejs/plugin-vue": "^4.2.3",
     "node-sass": "^4.14.1",

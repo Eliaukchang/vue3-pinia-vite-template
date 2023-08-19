@@ -40,4 +40,13 @@ export default defineConfig({
       autoInstall: true,
     })
   ],
+  // css相关配置
+  css: {
+    preprocessorOptions: {
+      // 导入scss预编译程序
+      scss: {
+        additionalData: `@use "@/assets/css/common/mixin.scss" as *;`,
+      },
+    },
+  },
 })

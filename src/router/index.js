@@ -3,7 +3,12 @@ import {createRouter, createWebHashHistory} from 'vue-router'
 const routes = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/layout'
+  },
+  {
+    path: "/layout",
+    name: 'layout',
+    component: () => import("@/components/Layout/index.vue"),
   },
   {
     path: '/home',
@@ -19,7 +24,7 @@ const routes = [
     path: "/popoverOptions",
     name: 'popoverOptions',
     component: () => import("@/views/Test/TestPopoverOptions.vue"),
-  }
+  },
 ]
 
 const router = createRouter({

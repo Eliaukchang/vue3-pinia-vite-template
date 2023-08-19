@@ -1,6 +1,6 @@
 <template>
   <el-popover :placement="placement" trigger="click" v-model:visible="visible" :popper-style="customClass"
-              ref="popoverOptions" @after-leave="handleAfterLeave">
+              ref="popoverOptions" @after-leave="handleAfterLeave" @after-enter="handleAfterEnter">
     <div class="options" v-loading="reqLoading">
       <el-input
           class="search-input"
@@ -16,9 +16,9 @@
         <template v-if="isShowOptionsList">
           <div class="no-match" v-if="showNoMatch">无匹配数据</div>
           <div class="options-list" v-else>
-            <div v-for="(optionItem, index) in optionsList"
+            <div v-for="(optionItem, index) in showOptionsList"
                  :key="index"
-                 :class="['options-item', selectedList.includes(optionItem.value) ? 'active' : '']"
+                 :class="['options-item','options-item' + index, selectedList.includes(optionItem.value) ? 'active' : '']"
                  @click="clickItem(optionItem)">
               <span class="text">{{ optionItem.text }}</span>
               <el-icon v-if="selectedList.includes(optionItem.value)">
@@ -57,6 +57,17 @@ onMounted(() => {
   handleInitData()
 });
 
+// 初始化可选择列表optionsList
+const handleInitData = () => {
+  if (!!props.dataList.length && !props.apiServiceName) {
+    // 使用传入组件的固定数据
+    optionsList.splice(0, optionsList.length, ...props.dataList)
+  } else if (!!props.apiServiceName) {
+    // 发请求获取数据
+    // todo
+  }
+}
+
 /**
  *  注释：props
  * */
@@ -64,7 +75,9 @@ const props = defineProps({
   // 外部提供的可选数据
   dataList: {
     type: Array,
-    default: []
+    default: () => {
+      return []
+    }
   },
   // 请求数据的接口名
   apiServiceName: {
@@ -84,7 +97,7 @@ const props = defineProps({
   // 是否多选，默认单选
   isMultiple: {
     type: Boolean,
-    default: true
+    default: false
   },
   // 是否显示搜索框，默认显示
   showInput: {
@@ -106,39 +119,26 @@ const visible = ref(false)
 let searchKeyWord = ref('')
 let searchResList = reactive([]) // 已匹配的
 const selectedList = reactive([])  // 已选择的
-// 可选数据源列表
-let dataList = reactive([
-  {text: '111', value: 1},
-  {text: '可选项2', value: 2},
-  {text: '可选项3', value: 3},
-  {text: '可选项4', value: 4},
-  {text: '可选项5', value: 5},
-  {text: '可选项6', value: 6},
-  {text: '可选项7', value: 7},
-  {text: '可选项8', value: 8},
-  {text: '可选项9', value: 9},
-  {text: '可选项10', value: 10},
-  {text: '可选项11', value: 11},
-])
+const optionsList = reactive([])  // 数据源
 
 /**
  *  注释：计算属性
  * */
 // 展示的源数据与匹配数据
-const optionsList = computed(() => {
-  return !!searchResList.length ? searchResList : dataList;
+const showOptionsList = computed(() => {
+  return !!searchKeyWord.value.length ? searchResList : optionsList
+})
+// 是否显示可选择项
+const isShowOptionsList = computed(() => {
+  return !!showOptionsList.value.length;  // optionsList是计算属性得到的，所以需要用.value
 })
 // 是否显示搜索框
 const isShowInput = computed(() => {
-  return props.showInput && dataList.length > 8;
+  return props.showInput && optionsList.length > 8;
 })
 // 是否显示'无匹配数据'
 let showNoMatch = computed(() => {
   return !!searchKeyWord.value && !searchResList.length;
-})
-// 是否显示可选择项
-const isShowOptionsList = computed(() => {
-  return !!optionsList.value.length;  // optionsList是计算属性得到的，所以需要用.value
 })
 // popover的自定义高度与宽度
 const customClass = computed(() => {
@@ -153,20 +153,32 @@ const customClass = computed(() => {
  * */
 const emits = defineEmits(['handleConfirmSelect'])
 
-// 初始化可选择列表optionsList
-const handleInitData = () => {
-  if (!!props.dataList.length && !props.apiServiceName) {
-    optionsList.value = JSON.parse(JSON.stringify(props.dataList))
-  } else if (!!props.apiServiceName) {
-    // 发请求获取数据
-    // todo
-  }
-}
 
-// popover隐藏时还原数据
+// popover隐藏之后，清空搜索数据
 const handleAfterLeave = () => {
   searchResList.length = 0
-  searchKeyWord = ''
+  searchKeyWord.value = ''
+}
+
+// popover显示之后，滚动到已选的第一个option位置
+const handleAfterEnter = () => {
+  if (!selectedList.length) return
+  let targetIndex = -1
+  if (props.isMultiple) {
+    let indexArr = []
+    showOptionsList.value.forEach((option, index) => {
+      const idx = selectedList.findIndex(item => item === option.value)
+      if (idx !== -1) {
+        indexArr.push(index)
+      }
+    })
+    targetIndex = Math.min(...indexArr)
+  } else {
+    targetIndex = showOptionsList.value.findIndex(option => option.value === selectedList[0])
+  }
+  if (targetIndex === -1) return
+  let temp = '.options-item' + targetIndex
+  document.querySelector(temp).scrollIntoView({behavior: 'smooth', block: 'center'})
 }
 
 // input框change事件，匹配搜索项
@@ -175,7 +187,7 @@ const inputChange = (value) => {
     searchResList.length = 0
     return
   }
-  const temp = optionsList.value?.filter((item) => {
+  const temp = optionsList?.filter((item) => {
     return new RegExp(value, 'i').test(item.text);
   })
   searchResList.splice(0, searchResList.length, ...temp)
@@ -187,7 +199,7 @@ const clickItem = (optionItem) => {
   if (!props.isMultiple) {
     // 单选
     if (!!selectedList.length) {
-      searchResList.length = 0
+      selectedList.length = 0
     }
     if (index === -1) {
       selectedList.push(optionItem.value)

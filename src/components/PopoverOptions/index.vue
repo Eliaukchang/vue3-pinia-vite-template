@@ -61,7 +61,7 @@ onMounted(() => {
 const handleInitData = () => {
   if (!!props.dataList.length && !props.apiServiceName) {
     // 使用传入组件的固定数据
-    optionsList.splice(0, optionsList.length, ...props.dataList)
+    optionsList.push(...props.dataList)
   } else if (!!props.apiServiceName) {
     // 发请求获取数据
     // todo
@@ -97,7 +97,7 @@ const props = defineProps({
   // 是否多选，默认单选
   isMultiple: {
     type: Boolean,
-    default: false
+    default: true
   },
   // 是否显示搜索框，默认显示
   showInput: {

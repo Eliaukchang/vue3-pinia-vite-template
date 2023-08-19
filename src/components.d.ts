@@ -9,20 +9,8 @@ declare module 'vue' {
   export interface GlobalComponents {
     Dialog: typeof import('./components/Dialog/index.vue')['default']
     Drawer: typeof import('./components/Drawer/index.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElDialog: typeof import('element-plus/es')['ElDialog']
-    ElForm: typeof import('element-plus/es')['ElForm']
-    ElFormItem: typeof import('element-plus/es')['ElFormItem']
-    ElIcon: typeof import('element-plus/es')['ElIcon']
-    ElInput: typeof import('element-plus/es')['ElInput']
-    ElLink: typeof import('element-plus/es')['ElLink']
-    ElPopover: typeof import('element-plus/es')['ElPopover']
-    IEpCheck: typeof import('~icons/ep/check')['default']
     PopoverOptions: typeof import('./components/PopoverOptions/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-  }
-  export interface ComponentCustomProperties {
-    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

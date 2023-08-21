@@ -2,28 +2,29 @@
   <div class="aside">
     <div class="menu">
       <el-menu
-          default-active="1"
+          default-active="/showDialogComponents/index"
+          :default-openeds="defaultOpends"
           class="el-menu"
           :collapse="isCollapse"
           active-text-color="#894811"
+          router
           @open="handleOpen"
           @close="handleClose"
       >
-        <el-sub-menu :index="item.id" v-for="(item, index) in menuList" :key="index">
+        <el-sub-menu :index="item.routePath" v-for="(item, index) in menuList" :key="index">
           <template #title>
             <el-icon>
               <i-ep-menu/>
             </el-icon>
-            <span>{{ item.oneLevelTitle }}</span>
+            <span>{{ item.meta.menuName }}</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item :index="item.id" v-for="(item, index) in item.children" :key="index">
-              {{ item.twoLevelTitle }}
+            <el-menu-item :index="item.routePath" v-for="(item, index) in item.children" :key="index">
+              {{ item.meta.menuName }}
             </el-menu-item>
           </el-menu-item-group>
         </el-sub-menu>
       </el-menu>
-      <!--      <el-button class="collapseBtn" @click="handleCollapse">折叠</el-button>-->
     </div>
   </div>
 </template>
@@ -32,44 +33,59 @@
 const isCollapse = ref(false)
 const menuList = reactive([
   {
-    oneLevelTitle: '一级标题',
-    id: '1',
+    routePath: '/dialogComponents',
+    name: 'dialogComponents',
+    meta: {
+      menuName: '弹窗相关组件',
+      menuIcon: '',
+    },
     children: [
       {
-        twoLevelTitle: '二级标题-1',
-        id: '1-1',
-        routerPath: ''
+        routePath: '/showDialogComponents/index',
+        name: 'showDialogComponents',
+        meta: {
+          menuName: '组件展示',
+          menuIcon: '',
+        }
       },
-      {
-        twoLevelTitle: '二级标题-2',
-        id: '1-2',
-        routerPath: ''
-      }
     ]
   },
   {
-    oneLevelTitle: '一级标题',
-    id: '2',
+    routePath: '/tableComponents',
+    name: 'tableComponents',
+    meta: {
+      menuName: '表格相关组件',
+      menuIcon: '',
+    },
     children: [
       {
-        twoLevelTitle: '二级标题-1',
-        id: '2-1',
-        routerPath: ''
+        routePath: '/showTableComponents/index',
+        name: 'showTableComponents',
+        meta: {
+          menuName: '组件展示',
+          menuIcon: '',
+        }
       },
-      {
-        twoLevelTitle: '二级标题-2',
-        id: '2-2',
-        routerPath: ''
-      }
     ]
   }
 ])
 
+/**
+ *  注释：computed
+ * */
+// 默认展开的sub-menu的index值组成的数组
+const defaultOpends = computed(() => {
+  return menuList.map(item => item.routePath)
+})
+
+// 处理菜单折叠
 const handleCollapse = () => {
   isCollapse.value = !isCollapse.value
 }
+
 const handleOpen = () => {
 }
+
 const handleClose = () => {
 }
 
@@ -78,21 +94,20 @@ const handleClose = () => {
 
 <style lang="scss" scoped>
 .aside {
-  padding: 20px 24px;
+  padding: 20px;
 
   .menu {
     position: relative;
     height: 100%;
     width: 260px;
 
-    ::v-deep {
-      .el-menu {
-        width: 100%;
-        height: 100%;
-        background-color: #fff;
-        border-radius: 8px;
-        border: none;
-      }
+    :deep(.el-menu) {
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      border-radius: 8px;
+      border: none;
+
 
       .el-menu-item-group__title {
         padding: 0;

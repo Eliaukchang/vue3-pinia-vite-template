@@ -17,7 +17,7 @@ import { reactive } from "vue";
 import {useCounterStore} from "@/stores/modules/counter.js";
 import { storeToRefs } from 'pinia'
 import Dialog from "@/components/Dialog/index.vue";
-import TestPopoverOptions from "@/views/Test/TestPopoverOptions.vue"
+import TestPopoverOptions from "@/views/showDialogComponents/TestPopoverOptions.vue"
 
 /**
  *  注释：测试Pinia

@@ -3,7 +3,9 @@
     <Header></Header>
     <div class="body">
       <AsideMenu></AsideMenu>
-      <PageMain></PageMain>
+      <div class="main">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -11,7 +13,6 @@
 <script setup>
 import Header from "@/components/Layout/components/Header.vue";
 import AsideMenu from "@/components/Layout/components/AsideMenu.vue";
-import PageMain from "@/components/Layout/components/PageMain.vue";
 
 </script>
 
@@ -23,6 +24,11 @@ import PageMain from "@/components/Layout/components/PageMain.vue";
     height: calc(100vh - 50px);
     display: flex;
     justify-content: space-between;
+
+    .main {
+      width: 100%;
+      padding: 20px 20px 20px 0;
+    }
   }
 }
 </style>

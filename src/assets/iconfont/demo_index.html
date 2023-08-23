@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>iconfont Demo</title>
+  <link rel="shortcut icon" href="//img.alicdn.com/imgextra/i4/O1CN01Z5paLz1O0zuCC7osS_!!6000000001644-55-tps-83-82.svg" type="image/x-icon"/>
+  <link rel="icon" type="image/svg+xml" href="//img.alicdn.com/imgextra/i4/O1CN01Z5paLz1O0zuCC7osS_!!6000000001644-55-tps-83-82.svg"/>
+  <link rel="stylesheet" href="https://g.alicdn.com/thx/cube/1.3.2/cube.min.css">
+  <link rel="stylesheet" href="demo.css">
+  <link rel="stylesheet" href="iconfont.css">
+  <script src="iconfont.js"></script>
+  <!-- jQuery -->
+  <script src="https://a1.alicdn.com/oss/uploads/2018/12/26/7bfddb60-08e8-11e9-9b04-53e73bb6408b.js"></script>
+  <!-- 代码高亮 -->
+  <script src="https://a1.alicdn.com/oss/uploads/2018/12/26/a3f714d0-08e6-11e9-8a15-ebf944d7534c.js"></script>
+  <style>
+    .main .logo {
+      margin-top: 0;
+      height: auto;
+    }
+
+    .main .logo a {
+      display: flex;
+      align-items: center;
+    }
+
+    .main .logo .sub-title {
+      margin-left: 0.5em;
+      font-size: 22px;
+      color: #fff;
+      background: linear-gradient(-45deg, #3967FF, #B500FE);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <h1 class="logo"><a href="https://www.iconfont.cn/" title="iconfont 首页" target="_blank">
+      <img width="200" src="https://img.alicdn.com/imgextra/i3/O1CN01Mn65HV1FfSEzR6DKv_!!6000000000514-55-tps-228-59.svg">
+      
+        <span class="sub-title">彩色字体</span>
+      
+    </a></h1>
+    <div class="nav-tabs">
+      <ul id="tabs" class="dib-box">
+        <li class="dib active"><span>Unicode</span></li>
+        <li class="dib"><span>Font class</span></li>
+        <li class="dib"><span>Symbol</span></li>
+      </ul>
+      
+      <a href="https://www.iconfont.cn/manage/index?manage_type=myprojects&projectId=4211998" target="_blank" class="nav-more">查看项目</a>
+      
+    </div>
+    <div class="tab-container">
+      <div class="content unicode" style="display: block;">
+          <ul class="icon_lists dib-box">
+          
+            <li class="dib">
+              <span class="icon iconfont">&#xe601;</span>
+                <div class="name">文件类型-Excel</div>
+                <div class="code-name">&amp;#xe601;</div>
+              </li>
+          
+            <li class="dib">
+              <span class="icon iconfont">&#xe602;</span>
+                <div class="name">文件类型-Word</div>
+                <div class="code-name">&amp;#xe602;</div>
+              </li>
+          
+            <li class="dib">
+              <span class="icon iconfont">&#xe604;</span>
+                <div class="name">文件类型-视频</div>
+                <div class="code-name">&amp;#xe604;</div>
+              </li>
+          
+            <li class="dib">
+              <span class="icon iconfont">&#xe605;</span>
+                <div class="name">文件类型-图片</div>
+                <div class="code-name">&amp;#xe605;</div>
+              </li>
+          
+            <li class="dib">
+              <span class="icon iconfont">&#xe606;</span>
+                <div class="name">文件类型-压缩包</div>
+                <div class="code-name">&amp;#xe606;</div>
+              </li>
+          
+            <li class="dib">
+              <span class="icon iconfont">&#xe608;</span>
+                <div class="name">文件类型-Pdf</div>
+                <div class="code-name">&amp;#xe608;</div>
+              </li>
+          
+            <li class="dib">
+              <span class="icon iconfont">&#xe609;</span>
+                <div class="name">文件类型-Txt</div>
+                <div class="code-name">&amp;#xe609;</div>
+              </li>
+          
+            <li class="dib">
+              <span class="icon iconfont">&#xe695;</span>
+                <div class="name">09-student</div>
+                <div class="code-name">&amp;#xe695;</div>
+              </li>
+          
+            <li class="dib">
+              <span class="icon iconfont">&#xe6c5;</span>
+                <div class="name">07.头像-男</div>
+                <div class="code-name">&amp;#xe6c5;</div>
+              </li>
+          
+            <li class="dib">
+              <span class="icon iconfont">&#xe615;</span>
+                <div class="name">喵喵</div>
+                <div class="code-name">&amp;#xe615;</div>
+              </li>
+          
+          </ul>
+          <div class="article markdown">
+          <h2 id="unicode-">Unicode 引用</h2>
+          <hr>
+
+          <p>Unicode 是字体在网页端最原始的应用方式，特点是：</p>
+          <ul>
+            <li>支持按字体的方式去动态调整图标大小，颜色等等。</li>
+            <li>默认情况下不支持多色，直接添加多色图标会自动去色。</li>
+          </ul>
+          <blockquote>
+            <p>注意：新版 iconfont 支持两种方式引用多色图标：SVG symbol 引用方式和彩色字体图标模式。（使用彩色字体图标需要在「编辑项目」中开启「彩色」选项后并重新生成。）</p>
+          </blockquote>
+          <p>Unicode 使用步骤如下：</p>
+          <h3 id="-font-face">第一步：拷贝项目下面生成的 <code>@font-face</code></h3>
+<pre><code class="language-css"
+>@font-face {
+  font-family: 'iconfont';
+  src: 
+       url('data:application/x-font-woff2;charset=utf-8;base64,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') format('woff2'),
+       url('iconfont.woff?t=1692807811937') format('woff'),
+       url('iconfont.ttf?t=1692807811937') format('truetype');
+}
+</code></pre>
+          <h3 id="-iconfont-">第二步：定义使用 iconfont 的样式</h3>
+<pre><code class="language-css"
+>.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+</code></pre>
+          <h3 id="-">第三步：挑选相应图标并获取字体编码，应用于页面</h3>
+<pre>
+<code class="language-html"
+>&lt;span class="iconfont"&gt;&amp;#x33;&lt;/span&gt;
+</code></pre>
+          <blockquote>
+            <p>"iconfont" 是你项目下的 font-family。可以通过编辑项目查看，默认是 "iconfont"。</p>
+          </blockquote>
+          </div>
+      </div>
+      <div class="content font-class">
+        <ul class="icon_lists dib-box">
+          
+          <li class="dib">
+            <span class="icon iconfont icon-excel"></span>
+            <div class="name">
+              文件类型-Excel
+            </div>
+            <div class="code-name">.icon-excel
+            </div>
+          </li>
+          
+          <li class="dib">
+            <span class="icon iconfont icon-word"></span>
+            <div class="name">
+              文件类型-Word
+            </div>
+            <div class="code-name">.icon-word
+            </div>
+          </li>
+          
+          <li class="dib">
+            <span class="icon iconfont icon-video"></span>
+            <div class="name">
+              文件类型-视频
+            </div>
+            <div class="code-name">.icon-video
+            </div>
+          </li>
+          
+          <li class="dib">
+            <span class="icon iconfont icon-image"></span>
+            <div class="name">
+              文件类型-图片
+            </div>
+            <div class="code-name">.icon-image
+            </div>
+          </li>
+          
+          <li class="dib">
+            <span class="icon iconfont icon-zip"></span>
+            <div class="name">
+              文件类型-压缩包
+            </div>
+            <div class="code-name">.icon-zip
+            </div>
+          </li>
+          
+          <li class="dib">
+            <span class="icon iconfont icon-pdf"></span>
+            <div class="name">
+              文件类型-Pdf
+            </div>
+            <div class="code-name">.icon-pdf
+            </div>
+          </li>
+          
+          <li class="dib">
+            <span class="icon iconfont icon-txt"></span>
+            <div class="name">
+              文件类型-Txt
+            </div>
+            <div class="code-name">.icon-txt
+            </div>
+          </li>
+          
+          <li class="dib">
+            <span class="icon iconfont icon-user-woman"></span>
+            <div class="name">
+              09-student
+            </div>
+            <div class="code-name">.icon-user-woman
+            </div>
+          </li>
+          
+          <li class="dib">
+            <span class="icon iconfont icon-user-man"></span>
+            <div class="name">
+              07.头像-男
+            </div>
+            <div class="code-name">.icon-user-man
+            </div>
+          </li>
+          
+          <li class="dib">
+            <span class="icon iconfont icon-cat"></span>
+            <div class="name">
+              喵喵
+            </div>
+            <div class="code-name">.icon-cat
+            </div>
+          </li>
+          
+        </ul>
+        <div class="article markdown">
+        <h2 id="font-class-">font-class 引用</h2>
+        <hr>
+
+        <p>font-class 是 Unicode 使用方式的一种变种，主要是解决 Unicode 书写不直观，语意不明确的问题。</p>
+        <p>与 Unicode 使用方式相比，具有如下特点：</p>
+        <ul>
+          <li>相比于 Unicode 语意明确，书写更直观。可以很容易分辨这个 icon 是什么。</li>
+          <li>因为使用 class 来定义图标，所以当要替换图标时，只需要修改 class 里面的 Unicode 引用。</li>
+        </ul>
+        <p>使用步骤如下：</p>
+        <h3 id="-fontclass-">第一步：引入项目下面生成的 fontclass 代码：</h3>
+<pre><code class="language-html">&lt;link rel="stylesheet" href="./iconfont.css"&gt;
+</code></pre>
+        <h3 id="-">第二步：挑选相应图标并获取类名，应用于页面：</h3>
+<pre><code class="language-html">&lt;span class="iconfont icon-xxx"&gt;&lt;/span&gt;
+</code></pre>
+        <blockquote>
+          <p>"
+            iconfont" 是你项目下的 font-family。可以通过编辑项目查看，默认是 "iconfont"。</p>
+        </blockquote>
+      </div>
+      </div>
+      <div class="content symbol">
+          <ul class="icon_lists dib-box">
+          
+            <li class="dib">
+                <svg class="icon svg-icon" aria-hidden="true">
+                  <use xlink:href="#icon-excel"></use>
+                </svg>
+                <div class="name">文件类型-Excel</div>
+                <div class="code-name">#icon-excel</div>
+            </li>
+          
+            <li class="dib">
+                <svg class="icon svg-icon" aria-hidden="true">
+                  <use xlink:href="#icon-word"></use>
+                </svg>
+                <div class="name">文件类型-Word</div>
+                <div class="code-name">#icon-word</div>
+            </li>
+          
+            <li class="dib">
+                <svg class="icon svg-icon" aria-hidden="true">
+                  <use xlink:href="#icon-video"></use>
+                </svg>
+                <div class="name">文件类型-视频</div>
+                <div class="code-name">#icon-video</div>
+            </li>
+          
+            <li class="dib">
+                <svg class="icon svg-icon" aria-hidden="true">
+                  <use xlink:href="#icon-image"></use>
+                </svg>
+                <div class="name">文件类型-图片</div>
+                <div class="code-name">#icon-image</div>
+            </li>
+          
+            <li class="dib">
+                <svg class="icon svg-icon" aria-hidden="true">
+                  <use xlink:href="#icon-zip"></use>
+                </svg>
+                <div class="name">文件类型-压缩包</div>
+                <div class="code-name">#icon-zip</div>
+            </li>
+          
+            <li class="dib">
+                <svg class="icon svg-icon" aria-hidden="true">
+                  <use xlink:href="#icon-pdf"></use>
+                </svg>
+                <div class="name">文件类型-Pdf</div>
+                <div class="code-name">#icon-pdf</div>
+            </li>
+          
+            <li class="dib">
+                <svg class="icon svg-icon" aria-hidden="true">
+                  <use xlink:href="#icon-txt"></use>
+                </svg>
+                <div class="name">文件类型-Txt</div>
+                <div class="code-name">#icon-txt</div>
+            </li>
+          
+            <li class="dib">
+                <svg class="icon svg-icon" aria-hidden="true">
+                  <use xlink:href="#icon-user-woman"></use>
+                </svg>
+                <div class="name">09-student</div>
+                <div class="code-name">#icon-user-woman</div>
+            </li>
+          
+            <li class="dib">
+                <svg class="icon svg-icon" aria-hidden="true">
+                  <use xlink:href="#icon-user-man"></use>
+                </svg>
+                <div class="name">07.头像-男</div>
+                <div class="code-name">#icon-user-man</div>
+            </li>
+          
+            <li class="dib">
+                <svg class="icon svg-icon" aria-hidden="true">
+                  <use xlink:href="#icon-cat"></use>
+                </svg>
+                <div class="name">喵喵</div>
+                <div class="code-name">#icon-cat</div>
+            </li>
+          
+          </ul>
+          <div class="article markdown">
+          <h2 id="symbol-">Symbol 引用</h2>
+          <hr>
+
+          <p>这是一种全新的使用方式，应该说这才是未来的主流，也是平台目前推荐的用法。相关介绍可以参考这篇<a href="">文章</a>
+            这种用法其实是做了一个 SVG 的集合，与另外两种相比具有如下特点：</p>
+          <ul>
+            <li>支持多色图标了，不再受单色限制。</li>
+            <li>通过一些技巧，支持像字体那样，通过 <code>font-size</code>, <code>color</code> 来调整样式。</li>
+            <li>兼容性较差，支持 IE9+，及现代浏览器。</li>
+            <li>浏览器渲染 SVG 的性能一般，还不如 png。</li>
+          </ul>
+          <p>使用步骤如下：</p>
+          <h3 id="-symbol-">第一步：引入项目下面生成的 symbol 代码：</h3>
+<pre><code class="language-html">&lt;script src="./iconfont.js"&gt;&lt;/script&gt;
+</code></pre>
+          <h3 id="-css-">第二步：加入通用 CSS 代码（引入一次就行）：</h3>
+<pre><code class="language-html">&lt;style&gt;
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+&lt;/style&gt;
+</code></pre>
+          <h3 id="-">第三步：挑选相应图标并获取类名，应用于页面：</h3>
+<pre><code class="language-html">&lt;svg class="icon" aria-hidden="true"&gt;
+  &lt;use xlink:href="#icon-xxx"&gt;&lt;/use&gt;
+&lt;/svg&gt;
+</code></pre>
+          </div>
+      </div>
+
+    </div>
+  </div>
+  <script>
+  $(document).ready(function () {
+      $('.tab-container .content:first').show()
+
+      $('#tabs li').click(function (e) {
+        var tabContent = $('.tab-container .content')
+        var index = $(this).index()
+
+        if ($(this).hasClass('active')) {
+          return
+        } else {
+          $('#tabs li').removeClass('active')
+          $(this).addClass('active')
+
+          tabContent.hide().eq(index).fadeIn()
+        }
+      })
+    })
+  </script>
+</body>
+</html>

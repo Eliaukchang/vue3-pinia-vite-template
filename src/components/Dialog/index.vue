@@ -11,11 +11,13 @@
                @close="cancel"
                append-to-body>
       <template #header>
+        <!-- 自定义弹窗头部 -->
         <slot name="header"></slot>
         <div v-if="showDefaultHeader && !$slots.header" class="dialog-title">{{ title }}</div>
       </template>
       <slot></slot>
       <template #footer>
+        <!-- 自定义弹窗底部 -->
         <slot name="footer"></slot>
         <span class="dialog-footer" v-if="showDefaultFooter && !$slots.footer">
           <el-button @click="cancel">{{ cancelBtnText }}</el-button>
@@ -173,9 +175,4 @@ const confirm = () => {
 </script>
 
 <style lang="scss" scoped>
-.dialog-title {
-  font-weight: 600;
-  font-size: 16px;
-  color: #262626;
-}
 </style>

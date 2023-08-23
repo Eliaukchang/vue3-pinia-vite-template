@@ -153,7 +153,6 @@ const customClass = computed(() => {
  * */
 const emits = defineEmits(['handleConfirmSelect'])
 
-
 // popover隐藏之后，清空搜索数据
 const handleAfterLeave = () => {
   searchResList.length = 0

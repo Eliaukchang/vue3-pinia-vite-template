@@ -3,7 +3,7 @@
       :title="dialogConfig?.title || '导入'"
       :custom-width="dialogConfig?.customWidth || '600px'"
       :visible="dialogConfig?.visible"
-      :disabConfirmBtn="disableConfirmBtn || fileList.length === 0"
+      :disabConfirmBtn="disableConfirmBtn || !fileList.length"
       @cancel="cancel"
       @confirm="confirm">
     <div class="upload-box">
@@ -20,19 +20,23 @@
             :before-upload="beforeUpload"
             :http-request="httpRequest"
             :on-success="successUpload">
-          <el-button type="primary" icon="el-icon-upload2" :loading="isUploading"> {{ uploadBtnText }}</el-button>
-          <div slot="tip" class="el-upload__tip">
-            <div v-if="!fileTypeTip">说明：请上传({{ acceptFileType.join('，') }})后缀的excel文件</div>
+          <el-button type="primary" :loading="isUploading">
+            <el-icon class="el-icon--left"><i-ep-upload/></el-icon>
+            {{ uploadBtnText }}
+          </el-button>
+          <template #tip>
+            <div v-if="!fileTypeTip" class="tips-text">说明：请上传{{acceptFileType.join('，') }}后缀的{{ fileTypeIcon }}文件
+            </div>
             <div v-else>{{ fileTypeTip }}</div>
-          </div>
+          </template>
         </el-upload>
         <div class="file-list-box" v-if="!showFileList">
           <div v-for="item in fileList" :key="item.uid" class="file-item">
             <div class="left">
-              <span :class="['iconfont', `icon-file-${getFileTypeIcon}`]"></span>
+              <span :class="['iconfont', `icon-${getFileTypeIcon(item.fileType)}`]"></span>
               <div>{{ item.name }}</div>
             </div>
-            <i class="el-icon-close" @click="removeFile(item)"></i>
+            <el-icon class="icon-close" @click="removeFile(item)"><i-ep-close/></el-icon>
           </div>
         </div>
         <div class="error-area" v-if="errInfo.errorCount > 0">
@@ -87,7 +91,7 @@ const props = defineProps({
     default: () => ['.xlsx', '.xls']
   },
   // 文件类型的图标
-  // 可传入的值有：excel、word、pdf、image、zip
+  // 可传入的值有：excel、word、pdf、image、zip、video、txt
   fileTypeIcon: {
     type: String,
     default: 'excel'
@@ -100,7 +104,7 @@ const props = defineProps({
   // 是否是多文件上传，true-多文件，false-单文件
   multiple: {
     type: Boolean,
-    default: false
+    default: true
   },
   // 多文件上传时的文件个数
   limit: {
@@ -150,14 +154,36 @@ const uploadBtnText = computed(() => {
 })
 
 // 文件类型图标
-const name = computed(() => {
-  return props.fileTypeIcon;
-})
+const fileTypeEnum = {
+  '.xls': 'excel',
+  '.xlsx': 'excel',
+  '.doc': 'word',
+  '.docx': 'word',
+  '.pdf': 'pdf',
+  '.zip': 'zip',
+  '.rar': 'zip',
+  '.png': 'image',
+  '.jpeg': 'image',
+  '.jpg': 'image',
+  '.gif': 'image',
+  '.mp4': 'video',
+  '.avi': 'video',
+}
+const getFileTypeIcon = (type) => {
+  console.log("type", type)
+  const icon = fileTypeEnum[type]
+  console.log("icon", icon)
+  if(!!icon){
+    return icon
+  }else {
+    return 'word'
+  }
+}
 
 /**
  *  注释：emits
  * */
-const emits = defineEmits(['successUpload'])
+const emits = defineEmits(['successUpload', 'handleCancel'])
 
 /**
  *  注释：methods
@@ -193,6 +219,7 @@ const beforeUpload = (file) => {
     size: file.size, // 文件大小
     uploadProcess: 0, // 上传进度
     status: '', // 上传状态
+    fileType: type, // 文件类型
     file: file
   });
   errInfo.errorCount = 0;
@@ -201,32 +228,38 @@ const beforeUpload = (file) => {
 
 // 移除文件
 const removeFile = (file) => {
+  console.log("移除：", file)
   const index = fileList.findIndex((item) => item.uid === file.uid);
   fileList.splice(index, 1);
   if (!fileList.length) {
     errInfo.errorCount = 0;
     errInfo.errorFilePath = '';
   }
+  upload.value.clearFiles()
 }
 
 //  覆盖默认的上传行为
 const httpRequest = ({file}) => {
   console.log('httpRequest', file);
+  console.log('successUpload', upload.value);
 }
 
 // 上传成功时触发的事件
 const successUpload = () => {
-  console.log('successUpload');
 }
 
 // 点击取消
 const cancel = () => {
-  props.dialogConfig.visible = false;
+  emits('handleCancel');
   resetUpload();
 }
 
 // 点击确定，开始上传
 const confirm = async () => {
+  if(!fileList.length){
+    alert("请选择文件")
+    return
+  }
   disableConfirmBtn.value = true;
   isUploading.value = true;
   try {
@@ -248,7 +281,7 @@ const confirm = async () => {
       console.warn('未定义uploadApi');
       return;
     }
-    const res = await uploadApiService[props.uploadApiName](formData);
+    const res = await uploadServices[props.uploadApiName](formData);
     // 是否有错误文件
     if (res?.errorCount > 0) {
       errInfo.errorCount = res?.errorCount;
@@ -269,10 +302,10 @@ const confirm = async () => {
 
 // 重置上传相关数据
 const resetUpload = () => {
-  upload.clearFiles();
+  upload.value.clearFiles()
   fileList.length = 0
-  errInfo.errorCount = 0;
-  errInfo.errorFilePath = '';
+  errInfo.errorCount = 0
+  errInfo.errorFilePath = ''
 }
 
 </script>
@@ -286,14 +319,15 @@ const resetUpload = () => {
   min-height: 150px;
 
   .upload-title {
-    padding: 5px 10px 0 5px;
+    padding: 8px 10px 0 5px;
   }
 
   .upload-area {
     flex: 1;
 
-    .el-upload__tip {
+    .tips-text {
       font-size: 14px;
+      padding: 10px 0;
     }
 
     .file-list-box {
@@ -313,14 +347,21 @@ const resetUpload = () => {
           align-items: center;
 
           .iconfont {
-            font-size: 18px;
+            font-size: 24px;
             margin-right: 5px;
           }
         }
 
-        .el-icon-close {
+        .icon-close {
+          display: none;
           padding: 3px;
           cursor: pointer;
+        }
+
+        &:hover{
+          .icon-close {
+            display: inline-block;
+          }
         }
       }
 

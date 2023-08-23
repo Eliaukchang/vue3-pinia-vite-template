@@ -54,6 +54,8 @@
 <script setup>
 import Dialog from "@/components/Dialog/index.vue";
 import uploadServices from "@/services/modules/uploadServices.js"
+import {fileTypeEnum} from "@/components/UploadDialog/constant/enum.js";
+
 
 /**
  *  注释：props
@@ -153,22 +155,17 @@ const uploadBtnText = computed(() => {
   return '选择文件';
 })
 
-// 文件类型图标
-const fileTypeEnum = {
-  '.xls': 'excel',
-  '.xlsx': 'excel',
-  '.doc': 'word',
-  '.docx': 'word',
-  '.pdf': 'pdf',
-  '.zip': 'zip',
-  '.rar': 'zip',
-  '.png': 'image',
-  '.jpeg': 'image',
-  '.jpg': 'image',
-  '.gif': 'image',
-  '.mp4': 'video',
-  '.avi': 'video',
-}
+/**
+ *  注释：emits
+ * */
+const emits = defineEmits(['successUpload', 'handleCancel'])
+
+/**
+ *  注释：methods
+ * */
+
+
+// 获取文件图标
 const getFileTypeIcon = (type) => {
   console.log("type", type)
   const icon = fileTypeEnum[type]
@@ -179,15 +176,6 @@ const getFileTypeIcon = (type) => {
     return 'word'
   }
 }
-
-/**
- *  注释：emits
- * */
-const emits = defineEmits(['successUpload', 'handleCancel'])
-
-/**
- *  注释：methods
- * */
 
 // 上传前触发的事件
 const beforeUpload = (file) => {

@@ -11,26 +11,26 @@ const routes = [
     path: "/:pathMatch(.*)", name: "NotFound", component: () => import("@/views/NotFound/index.vue"),
   },
   {
-    path: '/showTableComponents',
+    path: '/useTable',
     name: 'showTableComponents',
-    component: () => import(/* webpackChunkName: "showDialogComponents" */ '@/components/Layout/index.vue'),
-    redirect: '/showTableComponents/index',
+    component: () => import(/* webpackChunkName: "useDialog" */ '@/components/Layout/index.vue'),
+    redirect: '/useTable/index',
     children: [{
-      path: '/showTableComponents/index',
-      name: 'showTableComponents',
-      component: () => import(/* webpackChunkName: "showDialogComponents" */ '@/views/showTableComponents/index.vue'),
+      path: '/useTable/index',
+      name: 'useTable',
+      component: () => import(/* webpackChunkName: "useDialog" */ '@/views/useTable/index.vue'),
       meta: {}
     }]
   },
   {
-    path: '/showDialogComponents',
+    path: '/useDialog',
     name: 'showDialogComponents',
-    component: () => import(/* webpackChunkName: "showDialogComponents" */ '@/components/Layout/index.vue'),
-    redirect: '/showDialogComponents/index',
+    component: () => import(/* webpackChunkName: "useDialog" */ '@/components/Layout/index.vue'),
+    redirect: '/useDialog/index',
     children: [{
-      path: '/showDialogComponents/index',
-      name: 'showDialogComponents',
-      component: () => import(/* webpackChunkName: "showDialogComponents" */ '@/views/showDialogComponents/index.vue'),
+      path: '/useDialog/index',
+      name: 'useDialog',
+      component: () => import(/* webpackChunkName: "useDialog" */ '@/views/useDialog/index.vue'),
       meta: {}
     }]
   }
@@ -45,6 +45,7 @@ const modules = await import.meta.glob('./modules/*.js');
 Object.keys(modules).forEach(key => {
   const module = modules[key];
   module().then(route => {
+    console.log("route.default", route.default)
     router.addRoute(route.default);
   });
 });

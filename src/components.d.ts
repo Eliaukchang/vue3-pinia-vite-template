@@ -11,6 +11,7 @@ declare module 'vue' {
     Dialog: typeof import('./components/Dialog/index.vue')['default']
     Drawer: typeof import('./components/Drawer/index.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
+    ElButto: typeof import('element-plus/es')['ElButto']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElDialog: typeof import('element-plus/es')['ElDialog']
@@ -38,6 +39,7 @@ declare module 'vue' {
     PopoverOptions: typeof import('./components/PopoverOptions/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Table: typeof import('./components/Table/index.vue')['default']
     UploadDialog: typeof import('./components/UploadDialog/index.vue')['default']
   }
   export interface ComponentCustomProperties {

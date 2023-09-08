@@ -2,9 +2,9 @@
  *  注释： 页面右侧主体的 内容盒子
  * */
 .main-content {
-  height: calc(100% - $page-title - 40px);  // 40px是padding
+  height: calc(100% - 120px);  // 40px是padding
   background-color: #fff;
   overflow-y: auto;
-  overflow-x: hidden;
+  //overflow-x: hidden;
   border-radius: 8px;
 }

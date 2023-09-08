@@ -30,46 +30,9 @@
 </template>
 
 <script setup>
-const isCollapse = ref(false)
-const menuList = reactive([
-  {
-    routePath: '/dialogComponents',
-    name: 'dialogComponents',
-    meta: {
-      menuName: '弹窗相关组件',
-      menuIcon: '',
-    },
-    children: [
-      {
-        routePath: '/showDialogComponents/index',
-        name: 'showDialogComponents',
-        meta: {
-          menuName: '组件展示',
-          menuIcon: '',
-        }
-      },
-    ]
-  },
-  {
-    routePath: '/tableComponents',
-    name: 'tableComponents',
-    meta: {
-      menuName: '表格相关组件',
-      menuIcon: '',
-    },
-    children: [
-      {
-        routePath: '/showTableComponents/index',
-        name: 'showTableComponents',
-        meta: {
-          menuName: '组件展示',
-          menuIcon: '',
-        }
-      },
-    ]
-  }
-])
+import menuList from "@/components/Layout/config/menuList.js";
 
+const isCollapse = ref(false)
 /**
  *  注释：computed
  * */
@@ -94,12 +57,12 @@ const handleClose = () => {
 
 <style lang="scss" scoped>
 .aside {
-  padding: 20px;
+  height: calc(100% - 40px);
 
   .menu {
-    position: relative;
-    height: 100%;
     width: 260px;
+    height: 100%;
+    position: relative;
 
     :deep(.el-menu) {
       width: 100%;

@@ -2,7 +2,7 @@
   <div class="layout">
     <Header></Header>
     <div class="body">
-      <AsideMenu></AsideMenu>
+      <AsideMenu class="aside-menu"></AsideMenu>
       <div class="main">
         <router-view></router-view>
       </div>
@@ -18,16 +18,18 @@ import AsideMenu from "@/components/Layout/components/AsideMenu.vue";
 
 <style lang="scss" scoped>
 .layout {
+  height: 100vh;
   background-color: #F2F3F5;
 
   .body {
     height: calc(100vh - 50px);
     display: flex;
     justify-content: space-between;
+    padding: 20px;
 
     .main {
       width: 100%;
-      padding: 20px 20px 20px 0;
+      padding-left: 20px;
     }
   }
 }
